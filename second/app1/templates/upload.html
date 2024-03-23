@@ -1,0 +1,194 @@
+<!-- templates/upload.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload an Image</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 40px;
+            width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        label:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #222;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .navbar-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .navbar-item {
+            display: inline-block;
+        }
+
+        .navbar-item a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-item a:hover {
+            background-color: #555;
+        }
+
+        /* 页面内容样式 */
+        .content {
+            margin-top: 60px; /* 保持内容下移以避免导航栏覆盖 */
+        }
+
+        .image-display {
+            display: none;
+            text-align: center;
+        }
+
+        .image-display img {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item"><a href="http://127.0.0.1:8000/depart/list/">部门管理</a></li>
+            <li class="navbar-item"><a href="http://127.0.0.1:8000/user/list/">用户管理</a></li>
+            <li class="navbar-item"><a href="http://127.0.0.1:8000/pretty/list/">靓号管理</a></li>
+            <li class="navbar-item"><a href="http://127.0.0.1:8000/upload/">图像增强</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>随机对比度增强</h2>
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="imageInput">选择图片</label>
+                <input type="file" id="imageInput" name="image" accept="image/*">
+                <label for="outputPath">选择保存路径（可选）</label>
+                <input type="text" id="outputPath" name="output_path">
+                <button type="submit">加载功能并保存</button>
+            </form>
+        </div>
+
+    <!-- 图像显示区域 -->
+        <div class="image-display" id="imageDisplay">
+            <h3>原始图片</h3>
+            <img src="" id="originalImage" alt="Original Image">
+            <h3>处理后的图片</h3>
+            <img src="" id="enhancedImage" alt="Enhanced Image">
+    </div>
+</div>
+
+    <!-- JavaScript代码 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var imageDisplay = document.querySelector("#imageDisplay");
+            var originalImage = document.querySelector("#originalImage");
+            var enhancedImage = document.querySelector("#enhancedImage");
+
+            // 设置图片显示区域为初始隐藏
+            imageDisplay.style.display = "none";
+
+            // 获取表单元素
+            var form = document.querySelector("form");
+            var imageInput = document.querySelector("#imageInput");
+            var outputPathInput = document.querySelector("#outputPath");
+            var submitButton = document.querySelector('button[type="submit"]');
+
+            // 监听按钮的点击事件
+            submitButton.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                // 处理上传逻辑
+                var formData = new FormData(form);
+                // 进行AJAX请求并在返回后更新图片显示区域
+                // 请根据您的后端逻辑来实现AJAX请求
+                // ...
+                // 假设您在后端返回了原始图片和处理后的图片的URL
+                var originalImageUrl = "original_image_url";
+                var enhancedImageUrl = "enhanced_image_url";
+
+                // 更新图片显示区域
+                originalImage.src = originalImageUrl;
+                enhancedImage.src = enhancedImageUrl;
+                imageDisplay.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>

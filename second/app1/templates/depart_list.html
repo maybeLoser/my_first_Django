@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Department列表</h1>
+<a href="http://127.0.0.1:8000/depart/list/">部门管理</a>
+<a href="http://127.0.0.1:8000/user/list/">用户管理</a>
+<a href="http://127.0.0.1:8000/pretty/list/">靓号管理</a>
+<a href="http://127.0.0.1:8000/upload/">图像增强</a>
+<a href="http://127.0.0.1:8000/depart/add/">新建部门</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>部门名</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for obj in queryest %}
+    <tr>
+        <td>{{ obj.id }}</td>
+         <td>{{obj.title}}</td>
+         <td>
+             <a href="http://127.0.0.1:8000/depart/{{ obj.id }}/edit/">修改</a>
+             <a href="http://127.0.0.1:8000/depart/delete/?nid={{ obj.id }}" >删除</a>
+         </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

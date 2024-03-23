@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://127.0.0.1:8000/depart/list/">返回主页</a>
+  <h1>添加部门</h1>
+  <form method="post", action="/depart/add/">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="部门名">
+    <input type="submit", value="提交">
+  </form>
+</body>
+</html>

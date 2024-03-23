@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://127.0.0.1:8000/user/list/">返回主页</a>
+  <h1>编辑用户</h1>
+<!--novalidate关闭系统校验-->
+  <form method="post" novalidate>
+    {% csrf_token %}
+      {%for field in form%}
+          <div class = “form-group”>
+              <label >{{ field.label }}</label>
+              {{ field }}
+              <span style="color:red">
+                  {{field.errors.0}}
+              </span>
+
+          </div>
+      {%endfor%}
+      <div class = “form-group”>
+          <input type="submit" value="提交"class = “form-control” >
+      </div>
+  </form>
+</body>
+</html>

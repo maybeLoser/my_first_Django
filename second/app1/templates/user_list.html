@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>用户列表</h1>
+<a href="http://127.0.0.1:8000/depart/list/">部门管理</a>
+<a href="http://127.0.0.1:8000/user/list/">用户管理</a>
+<a href="http://127.0.0.1:8000/pretty/list/">靓号管理</a>
+<a href="http://127.0.0.1:8000/upload/">图像增强</a>
+<a href="http://127.0.0.1:8000/user/add/">新建用户</a>
+<a href="http://127.0.0.1:8000/user/model/form/add/">ModelForm新建用户</a>
+<table border="1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>密码</th>
+            <th>年龄</th>
+            <th>余额</th>
+            <th>入职时间</th>
+            <th>性别</th>
+            <th>所属部门</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for obj in queryest %}
+    <tr>
+        <td>{{ obj.id }}</td>
+         <td>{{obj.name}}</td>
+        <td>{{ obj.password }}</td>
+         <td>{{obj.age}}</td>
+        <td>{{ obj.account }}</td>
+        <!--obj.create_time|date:"Y-m-d H:i:s" -->
+         <td>{{ obj.create_time|date:"Y-m-d " }}</td>
+        <td>{{ obj.get_gender_display }}</td>
+         <td>{{obj.depart.title}}</td>
+         <td>
+             <a href="/user/{{ obj.id }}/edit/">修改</a>
+             <a href="/user/{{ obj.id }}/delete/" >删除</a>
+         </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

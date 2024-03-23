@@ -1,0 +1,83 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 返回按钮样式 */
+        .btn-back {
+            margin-top: 20px;
+        }
+
+        .btn-back a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>结果处理</h1>
+
+        <!-- 显示处理前和处理后的图像 -->
+        <div class="result-images">
+            <div class="original-image">
+                <h2>原始图像</h2>
+                <img src="{{ original_image_url }}" alt="Original Image">
+            </div>
+            <div class="enhanced-image">
+                <h2>增强图像</h2>
+                <img src="{{ enhanced_image_url }}" alt="Enhanced Image">
+            </div>
+        </div>
+
+        <!-- 返回按钮 -->
+        <div class="btn-back">
+            <a href="{% url 'upload_image' %}">回到上传页面</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
